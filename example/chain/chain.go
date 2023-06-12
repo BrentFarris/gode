@@ -7,7 +7,6 @@ import (
 
 	"github.com/ianremmler/ode"
 	"gopkg.in/qml.v1"
-	"gopkg.in/qml.v1/gl/1.0"
 )
 
 const (
@@ -25,7 +24,7 @@ var (
 	ctGrp  ode.JointGroup
 	sphere []ode.Sphere
 	mass   *ode.Mass
-	angle  float64
+	angle  float32
 )
 
 func cb(data interface{}, obj1, obj2 ode.Geom) {
@@ -74,8 +73,8 @@ func (s *Sim) Paint(p *qml.Painter) {
 	gl.ClearColor(0, 0, 0, 0)
 	gl.Clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT)
 
-	width := float64(s.Int("width"))
-	height := float64(s.Int("height"))
+	width := float32(s.Int("width"))
+	height := float32(s.Int("height"))
 
 	gl.PushMatrix()
 	scale := width / 5
@@ -112,13 +111,13 @@ func run() error {
 
 func drawSphere(gl *GL.GL, latSegs, lonSegs int) {
 	for i := 0; i < latSegs; i++ {
-		latFrac0, latFrac1 := float64(i)/float64(latSegs), float64(i+1)/float64(latSegs)
+		latFrac0, latFrac1 := float32(i)/float32(latSegs), float32(i+1)/float32(latSegs)
 		latAngle0, latAngle1 := math.Pi*(latFrac0-0.5), math.Pi*(latFrac1-0.5)
 		z0, z1 := math.Sin(latAngle0), math.Sin(latAngle1)
 		r0, r1 := math.Cos(latAngle0), math.Cos(latAngle1)
 		gl.Begin(GL.QUAD_STRIP)
 		for j := 0; j <= lonSegs; j++ {
-			lonFrac := float64(j) / float64(lonSegs)
+			lonFrac := float32(j) / float32(lonSegs)
 			lonAngle := 2 * math.Pi * lonFrac
 			x0, x1 := r0*math.Cos(lonAngle), r1*math.Cos(lonAngle)
 			y0, y1 := r0*math.Sin(lonAngle), r1*math.Sin(lonAngle)
@@ -146,7 +145,7 @@ func main() {
 	space.NewPlane(ode.V4(0, 0, 1, 0))
 
 	for i := 0; i < numSpheres; i++ {
-		k := float64(i) * sideLen
+		k := float32(i) * sideLen
 		body[i] = world.NewBody()
 		body[i].SetPosition(ode.V3(k, k, k+0.4))
 		mass.SetBox(1, ode.V3(sideLen, sideLen, sideLen))
@@ -159,7 +158,7 @@ func main() {
 	for i := 0; i < numSpheres-1; i++ {
 		joint[i] = world.NewBallJoint(ode.JointGroup(0))
 		joint[i].Attach(body[i], body[i+1])
-		k := (float64(i) + 0.5) * sideLen
+		k := (float32(i) + 0.5) * sideLen
 		joint[i].SetAnchor(ode.V3(k, k, k+0.4))
 	}
 

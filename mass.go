@@ -7,7 +7,7 @@ import "C"
 type Mass struct {
 	Center  Vector3
 	Inertia Matrix3
-	Mass    float64
+	Mass    float32
 }
 
 func (m *Mass) toC(c *C.dMass) {
@@ -17,7 +17,7 @@ func (m *Mass) toC(c *C.dMass) {
 }
 
 func (m *Mass) fromC(c *C.dMass) {
-	m.Mass = float64(c.mass)
+	m.Mass = float32(c.mass)
 	Vector(m.Center).fromC((*C.dReal)(&c.c[0]))
 	Matrix(m.Inertia).fromC((*C.dReal)(&c.I[0]))
 }
@@ -45,7 +45,7 @@ func (m *Mass) SetZero() {
 }
 
 // SetParams sets the mass parameters.
-func (m *Mass) SetParams(mass float64, com Vector3, inert Matrix3) {
+func (m *Mass) SetParams(mass float32, com Vector3, inert Matrix3) {
 	c := &C.dMass{}
 	C.dMassSetParameters(c, C.dReal(mass),
 		C.dReal(com[0]), C.dReal(com[1]), C.dReal(com[2]),
@@ -55,21 +55,21 @@ func (m *Mass) SetParams(mass float64, com Vector3, inert Matrix3) {
 }
 
 // SetSphere sets the mass for a sphere of given properties.
-func (m *Mass) SetSphere(density, radius float64) {
+func (m *Mass) SetSphere(density, radius float32) {
 	c := &C.dMass{}
 	C.dMassSetSphere(c, C.dReal(density), C.dReal(radius))
 	m.fromC(c)
 }
 
 // SetSphereTotal sets the mass for a sphere of given properties.
-func (m *Mass) SetSphereTotal(totalMass, radius float64) {
+func (m *Mass) SetSphereTotal(totalMass, radius float32) {
 	c := &C.dMass{}
 	C.dMassSetSphereTotal(c, C.dReal(totalMass), C.dReal(radius))
 	m.fromC(c)
 }
 
 // SetCapsule sets the mass for a capsule of given properties.
-func (m *Mass) SetCapsule(density float64, direction int, radius, length float64) {
+func (m *Mass) SetCapsule(density float32, direction int, radius, length float32) {
 	c := &C.dMass{}
 	C.dMassSetCapsule(c, C.dReal(density), C.int(direction), C.dReal(radius),
 		C.dReal(length))
@@ -77,7 +77,7 @@ func (m *Mass) SetCapsule(density float64, direction int, radius, length float64
 }
 
 // SetCapsuleTotal sets the mass for a capsule of given properties.
-func (m *Mass) SetCapsuleTotal(totalMass float64, direction int, radius, length float64) {
+func (m *Mass) SetCapsuleTotal(totalMass float32, direction int, radius, length float32) {
 	c := &C.dMass{}
 	C.dMassSetCapsuleTotal(c, C.dReal(totalMass), C.int(direction), C.dReal(radius),
 		C.dReal(length))
@@ -85,7 +85,7 @@ func (m *Mass) SetCapsuleTotal(totalMass float64, direction int, radius, length 
 }
 
 // SetCylinder sets the mass for a cylinder of given properties.
-func (m *Mass) SetCylinder(density float64, direction int, radius, length float64) {
+func (m *Mass) SetCylinder(density float32, direction int, radius, length float32) {
 	c := &C.dMass{}
 	C.dMassSetCylinder(c, C.dReal(density), C.int(direction), C.dReal(radius),
 		C.dReal(length))
@@ -93,7 +93,7 @@ func (m *Mass) SetCylinder(density float64, direction int, radius, length float6
 }
 
 // SetCylinderTotal sets the mass for a cylinder of given properties.
-func (m *Mass) SetCylinderTotal(totalMass float64, direction int, radius, length float64) {
+func (m *Mass) SetCylinderTotal(totalMass float32, direction int, radius, length float32) {
 	c := &C.dMass{}
 	C.dMassSetCylinderTotal(c, C.dReal(totalMass), C.int(direction), C.dReal(radius),
 		C.dReal(length))
@@ -101,7 +101,7 @@ func (m *Mass) SetCylinderTotal(totalMass float64, direction int, radius, length
 }
 
 // SetBox sets the mass for a box of given properties.
-func (m *Mass) SetBox(density float64, lens Vector3) {
+func (m *Mass) SetBox(density float32, lens Vector3) {
 	c := &C.dMass{}
 	C.dMassSetBox(c, C.dReal(density),
 		C.dReal(lens[0]), C.dReal(lens[1]), C.dReal(lens[2]))
@@ -109,7 +109,7 @@ func (m *Mass) SetBox(density float64, lens Vector3) {
 }
 
 // SetBoxTotal sets the mass for a box of given properties.
-func (m *Mass) SetBoxTotal(totalMass float64, lens Vector3) {
+func (m *Mass) SetBoxTotal(totalMass float32, lens Vector3) {
 	c := &C.dMass{}
 	C.dMassSetBoxTotal(c, C.dReal(totalMass),
 		C.dReal(lens[0]), C.dReal(lens[1]), C.dReal(lens[2]))
@@ -117,21 +117,21 @@ func (m *Mass) SetBoxTotal(totalMass float64, lens Vector3) {
 }
 
 // SetTrimesh sets the mass for the given triangle mesh.
-func (m *Mass) SetTriMesh(density float64, mesh TriMesh) {
+func (m *Mass) SetTriMesh(density float32, mesh TriMesh) {
 	c := &C.dMass{}
 	C.dMassSetTrimesh(c, C.dReal(density), mesh.c())
 	m.fromC(c)
 }
 
 // SetTrimeshTotal sets the mass for the given triangle mesh.
-func (m *Mass) SetTriMeshTotal(totalMass float64, mesh TriMesh) {
+func (m *Mass) SetTriMeshTotal(totalMass float32, mesh TriMesh) {
 	c := &C.dMass{}
 	C.dMassSetTrimeshTotal(c, C.dReal(totalMass), mesh.c())
 	m.fromC(c)
 }
 
 // Adjust sets parameters based on the given total mass.
-func (m *Mass) Adjust(mass float64) {
+func (m *Mass) Adjust(mass float32) {
 	c := &C.dMass{}
 	m.toC(c)
 	C.dMassAdjust(c, C.dReal(mass))

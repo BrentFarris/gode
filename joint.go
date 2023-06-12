@@ -299,13 +299,13 @@ type BallJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j BallJoint) SetParam(parameter int, value float64) {
+func (j BallJoint) SetParam(parameter int, value float32) {
 	C.dJointSetBallParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j BallJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetBallParam(j.c(), C.int(parameter)))
+func (j BallJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetBallParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point for the first body.
@@ -338,13 +338,13 @@ type HingeJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j HingeJoint) SetParam(parameter int, value float64) {
+func (j HingeJoint) SetParam(parameter int, value float32) {
 	C.dJointSetHingeParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j HingeJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetHingeParam(j.c(), C.int(parameter)))
+func (j HingeJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetHingeParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point.
@@ -378,7 +378,7 @@ func (j HingeJoint) SetAxis(axis Vector3) {
 }
 
 // SetAxisOffset set the hinge axis as if the 2 bodies were already at angle appart.
-func (j HingeJoint) SetAxisOffset(axis Vector3, angle float64) {
+func (j HingeJoint) SetAxisOffset(axis Vector3, angle float32) {
 	C.dJointSetHingeAxisOffset(j.c(), C.dReal(axis[0]), C.dReal(axis[1]), C.dReal(axis[2]),
 		C.dReal(angle))
 }
@@ -391,18 +391,18 @@ func (j HingeJoint) Axis() Vector3 {
 }
 
 // AddTorque adds a torque to the joint.
-func (j HingeJoint) AddTorque(torque float64) {
+func (j HingeJoint) AddTorque(torque float32) {
 	C.dJointAddHingeTorque(j.c(), C.dReal(torque))
 }
 
 // Angle returns the joint angle.
-func (j HingeJoint) Angle() float64 {
-	return float64(C.dJointGetHingeAngle(j.c()))
+func (j HingeJoint) Angle() float32 {
+	return float32(C.dJointGetHingeAngle(j.c()))
 }
 
 // AngleRate returns the joint angle's rate of change.
-func (j HingeJoint) AngleRate() float64 {
-	return float64(C.dJointGetHingeAngleRate(j.c()))
+func (j HingeJoint) AngleRate() float32 {
+	return float32(C.dJointGetHingeAngleRate(j.c()))
 }
 
 // SliderJoint represents a slider joints.
@@ -411,23 +411,23 @@ type SliderJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j SliderJoint) SetParam(parameter int, value float64) {
+func (j SliderJoint) SetParam(parameter int, value float32) {
 	C.dJointSetSliderParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j SliderJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetSliderParam(j.c(), C.int(parameter)))
+func (j SliderJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetSliderParam(j.c(), C.int(parameter)))
 }
 
 // Position returns the slider position.
-func (j SliderJoint) Position() float64 {
-	return float64(C.dJointGetSliderPosition(j.c()))
+func (j SliderJoint) Position() float32 {
+	return float32(C.dJointGetSliderPosition(j.c()))
 }
 
 // PositionRate returns the slider position's rate of change.
-func (j SliderJoint) PositionRate() float64 {
-	return float64(C.dJointGetSliderPositionRate(j.c()))
+func (j SliderJoint) PositionRate() float32 {
+	return float32(C.dJointGetSliderPositionRate(j.c()))
 }
 
 // SetAxis sets the slider axis.
@@ -449,7 +449,7 @@ func (j SliderJoint) Axis() Vector3 {
 }
 
 // AddForce adds a force to the joint.
-func (j SliderJoint) AddForce(force float64) {
+func (j SliderJoint) AddForce(force float32) {
 	C.dJointAddSliderForce(j.c(), C.dReal(force))
 }
 
@@ -464,13 +464,13 @@ type UniversalJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j UniversalJoint) SetParam(parameter int, value float64) {
+func (j UniversalJoint) SetParam(parameter int, value float32) {
 	C.dJointSetUniversalParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j UniversalJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetUniversalParam(j.c(), C.int(parameter)))
+func (j UniversalJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetUniversalParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point.
@@ -499,7 +499,7 @@ func (j UniversalJoint) SetAxis1(axis Vector3) {
 
 // SetAxis1Offset sets the first axis as if the 2 bodies were already at
 // offset1 and offset2 appart with respect to the first and second axes.
-func (j UniversalJoint) SetAxis1Offset(axis Vector3, offset1, offset2 float64) {
+func (j UniversalJoint) SetAxis1Offset(axis Vector3, offset1, offset2 float32) {
 	C.dJointSetUniversalAxis1Offset(j.c(), C.dReal(axis[0]), C.dReal(axis[1]), C.dReal(axis[2]),
 		C.dReal(offset1), C.dReal(offset2))
 }
@@ -518,7 +518,7 @@ func (j UniversalJoint) SetAxis2(axis Vector3) {
 
 // SetAxis2Offset sets the second axis as if the 2 bodies were already at
 // offset1 and offset2 appart with respect to the first and second axes.
-func (j UniversalJoint) SetAxis2Offset(axis Vector3, offset1, offset2 float64) {
+func (j UniversalJoint) SetAxis2Offset(axis Vector3, offset1, offset2 float32) {
 	C.dJointSetUniversalAxis2Offset(j.c(), C.dReal(axis[0]), C.dReal(axis[1]), C.dReal(axis[2]),
 		C.dReal(offset1), C.dReal(offset1))
 }
@@ -531,34 +531,34 @@ func (j UniversalJoint) Axis2() Vector3 {
 }
 
 // Angle1 returns the first angle.
-func (j UniversalJoint) Angle1() float64 {
-	return float64(C.dJointGetUniversalAngle1(j.c()))
+func (j UniversalJoint) Angle1() float32 {
+	return float32(C.dJointGetUniversalAngle1(j.c()))
 }
 
 // Angle1Rate returns the first angle's rate of change.
-func (j UniversalJoint) Angle1Rate() float64 {
-	return float64(C.dJointGetUniversalAngle1Rate(j.c()))
+func (j UniversalJoint) Angle1Rate() float32 {
+	return float32(C.dJointGetUniversalAngle1Rate(j.c()))
 }
 
 // Angle2 returns the second angle.
-func (j UniversalJoint) Angle2() float64 {
-	return float64(C.dJointGetUniversalAngle2(j.c()))
+func (j UniversalJoint) Angle2() float32 {
+	return float32(C.dJointGetUniversalAngle2(j.c()))
 }
 
 // Angle2Rate returns the second angle's rate of change.
-func (j UniversalJoint) Angle2Rate() float64 {
-	return float64(C.dJointGetUniversalAngle2Rate(j.c()))
+func (j UniversalJoint) Angle2Rate() float32 {
+	return float32(C.dJointGetUniversalAngle2Rate(j.c()))
 }
 
 // Angles returns the two angles.
-func (j UniversalJoint) Angles() (float64, float64) {
-	var angle1, angle2 float64
+func (j UniversalJoint) Angles() (float32, float32) {
+	var angle1, angle2 float32
 	C.dJointGetUniversalAngles(j.c(), (*C.dReal)(&angle1), (*C.dReal)(&angle2))
 	return angle1, angle2
 }
 
 // AddTorques adds torques to the joint.
-func (j UniversalJoint) AddTorques(torque1, torque2 float64) {
+func (j UniversalJoint) AddTorques(torque1, torque2 float32) {
 	C.dJointAddUniversalTorques(j.c(), C.dReal(torque1), C.dReal(torque2))
 }
 
@@ -568,13 +568,13 @@ type Hinge2Joint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j Hinge2Joint) SetParam(parameter int, value float64) {
+func (j Hinge2Joint) SetParam(parameter int, value float32) {
 	C.dJointSetHinge2Param(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j Hinge2Joint) Param(parameter int) float64 {
-	return float64(C.dJointGetHinge2Param(j.c(), C.int(parameter)))
+func (j Hinge2Joint) Param(parameter int) float32 {
+	return float32(C.dJointGetHinge2Param(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point.
@@ -621,27 +621,27 @@ func (j Hinge2Joint) Axis2() Vector3 {
 }
 
 // Angle1 returns the first angle.
-func (j Hinge2Joint) Angle1() float64 {
-	return float64(C.dJointGetHinge2Angle1(j.c()))
+func (j Hinge2Joint) Angle1() float32 {
+	return float32(C.dJointGetHinge2Angle1(j.c()))
 }
 
 // Angle1Rate returns the first angle's rate of change.
-func (j Hinge2Joint) Angle1Rate() float64 {
-	return float64(C.dJointGetHinge2Angle1Rate(j.c()))
+func (j Hinge2Joint) Angle1Rate() float32 {
+	return float32(C.dJointGetHinge2Angle1Rate(j.c()))
 }
 
 // Angle2 returns the second angle.
-func (j Hinge2Joint) Angle2() float64 {
-	return float64(C.dJointGetHinge2Angle2(j.c()))
+func (j Hinge2Joint) Angle2() float32 {
+	return float32(C.dJointGetHinge2Angle2(j.c()))
 }
 
 // Angle2Rate returns the second angle's rate of change.
-func (j Hinge2Joint) Angle2Rate() float64 {
-	return float64(C.dJointGetHinge2Angle2Rate(j.c()))
+func (j Hinge2Joint) Angle2Rate() float32 {
+	return float32(C.dJointGetHinge2Angle2Rate(j.c()))
 }
 
 // AddTorques adds torques to the joint.
-func (j Hinge2Joint) AddTorques(torque1, torque2 float64) {
+func (j Hinge2Joint) AddTorques(torque1, torque2 float32) {
 	C.dJointAddHinge2Torques(j.c(), C.dReal(torque1), C.dReal(torque2))
 }
 
@@ -651,13 +651,13 @@ type FixedJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j FixedJoint) SetParam(parameter int, value float64) {
+func (j FixedJoint) SetParam(parameter int, value float32) {
 	C.dJointSetFixedParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j FixedJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetFixedParam(j.c(), C.int(parameter)))
+func (j FixedJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetFixedParam(j.c(), C.int(parameter)))
 }
 
 // Fix fixes the joint in its current state.
@@ -676,13 +676,13 @@ type AMotorJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j AMotorJoint) SetParam(parameter int, value float64) {
+func (j AMotorJoint) SetParam(parameter int, value float32) {
 	C.dJointSetAMotorParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j AMotorJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetAMotorParam(j.c(), C.int(parameter)))
+func (j AMotorJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetAMotorParam(j.c(), C.int(parameter)))
 }
 
 // SetNumAxes sets the number of axes.
@@ -714,18 +714,18 @@ func (j AMotorJoint) AxisRel(num int) int {
 }
 
 // SetAngle sets the angle of the given axis.
-func (j AMotorJoint) SetAngle(num int, angle float64) {
+func (j AMotorJoint) SetAngle(num int, angle float32) {
 	C.dJointSetAMotorAngle(j.c(), C.int(num), C.dReal(angle))
 }
 
 // Angle returns the angle of the given axis.
-func (j AMotorJoint) Angle(num int) float64 {
-	return float64(C.dJointGetAMotorAngle(j.c(), C.int(num)))
+func (j AMotorJoint) Angle(num int) float32 {
+	return float32(C.dJointGetAMotorAngle(j.c(), C.int(num)))
 }
 
 // AngleRate returns the angle's rate of change for the given axis.
-func (j AMotorJoint) AngleRate(num int) float64 {
-	return float64(C.dJointGetAMotorAngleRate(j.c(), C.int(num)))
+func (j AMotorJoint) AngleRate(num int) float32 {
+	return float32(C.dJointGetAMotorAngleRate(j.c(), C.int(num)))
 }
 
 // SetMode sets the mode.
@@ -739,7 +739,7 @@ func (j AMotorJoint) Mode() int {
 }
 
 // AddTorques adds torques to the joint.
-func (j AMotorJoint) AddTorques(torque1, torque2, torque3 float64) {
+func (j AMotorJoint) AddTorques(torque1, torque2, torque3 float32) {
 	C.dJointAddAMotorTorques(j.c(), C.dReal(torque1), C.dReal(torque2), C.dReal(torque3))
 }
 
@@ -749,13 +749,13 @@ type LMotorJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j LMotorJoint) SetParam(parameter int, value float64) {
+func (j LMotorJoint) SetParam(parameter int, value float32) {
 	C.dJointSetLMotorParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j LMotorJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetLMotorParam(j.c(), C.int(parameter)))
+func (j LMotorJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetLMotorParam(j.c(), C.int(parameter)))
 }
 
 // SetNumAxes sets the number of axes.
@@ -787,17 +787,17 @@ type Plane2DJoint struct {
 }
 
 // SetXParam sets a joint parameter.
-func (j Plane2DJoint) SetXParam(parameter int, value float64) {
+func (j Plane2DJoint) SetXParam(parameter int, value float32) {
 	C.dJointSetPlane2DXParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // SetYParam sets a joint parameter.
-func (j Plane2DJoint) SetYParam(parameter int, value float64) {
+func (j Plane2DJoint) SetYParam(parameter int, value float32) {
 	C.dJointSetPlane2DYParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // SetAngleParam sets a joint parameter.
-func (j Plane2DJoint) SetAngleParam(parameter int, value float64) {
+func (j Plane2DJoint) SetAngleParam(parameter int, value float32) {
 	C.dJointSetPlane2DAngleParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
@@ -807,13 +807,13 @@ type PRJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j PRJoint) SetParam(parameter int, value float64) {
+func (j PRJoint) SetParam(parameter int, value float32) {
 	C.dJointSetPRParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j PRJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetPRParam(j.c(), C.int(parameter)))
+func (j PRJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetPRParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point.
@@ -853,27 +853,27 @@ func (j PRJoint) Axis2() Vector3 {
 }
 
 // Position returns the slider position.
-func (j PRJoint) Position() float64 {
-	return float64(C.dJointGetPRPosition(j.c()))
+func (j PRJoint) Position() float32 {
+	return float32(C.dJointGetPRPosition(j.c()))
 }
 
 // PositionRate returns the slider position's rate of change.
-func (j PRJoint) PositionRate() float64 {
-	return float64(C.dJointGetPRPositionRate(j.c()))
+func (j PRJoint) PositionRate() float32 {
+	return float32(C.dJointGetPRPositionRate(j.c()))
 }
 
 // Angle returns the joint angle.
-func (j PRJoint) Angle() float64 {
-	return float64(C.dJointGetPRAngle(j.c()))
+func (j PRJoint) Angle() float32 {
+	return float32(C.dJointGetPRAngle(j.c()))
 }
 
 // AngleRate returns the joint angle's rate of change.
-func (j PRJoint) AngleRate() float64 {
-	return float64(C.dJointGetPRAngleRate(j.c()))
+func (j PRJoint) AngleRate() float32 {
+	return float32(C.dJointGetPRAngleRate(j.c()))
 }
 
 // AddTorque adds a torque to the joint.
-func (j PRJoint) AddTorque(torque float64) {
+func (j PRJoint) AddTorque(torque float32) {
 	C.dJointAddPRTorque(j.c(), C.dReal(torque))
 }
 
@@ -883,13 +883,13 @@ type PUJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j PUJoint) SetParam(parameter int, value float64) {
+func (j PUJoint) SetParam(parameter int, value float32) {
 	C.dJointSetPUParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j PUJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetPUParam(j.c(), C.int(parameter)))
+func (j PUJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetPUParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point.
@@ -947,38 +947,38 @@ func (j PUJoint) Axis3() Vector3 {
 }
 
 // Position returns the joint position.
-func (j PUJoint) Position() float64 {
-	return float64(C.dJointGetPUPosition(j.c()))
+func (j PUJoint) Position() float32 {
+	return float32(C.dJointGetPUPosition(j.c()))
 }
 
 // PositionRate returns the joint position's rate of change.
-func (j PUJoint) PositionRate() float64 {
-	return float64(C.dJointGetPUPositionRate(j.c()))
+func (j PUJoint) PositionRate() float32 {
+	return float32(C.dJointGetPUPositionRate(j.c()))
 }
 
 // Angle1 returns the first angle.
-func (j PUJoint) Angle1() float64 {
-	return float64(C.dJointGetPUAngle1(j.c()))
+func (j PUJoint) Angle1() float32 {
+	return float32(C.dJointGetPUAngle1(j.c()))
 }
 
 // Angle1Rate returns the first angle's rate of change.
-func (j PUJoint) Angle1Rate() float64 {
-	return float64(C.dJointGetPUAngle1Rate(j.c()))
+func (j PUJoint) Angle1Rate() float32 {
+	return float32(C.dJointGetPUAngle1Rate(j.c()))
 }
 
 // Angle2 returns the second angle.
-func (j PUJoint) Angle2() float64 {
-	return float64(C.dJointGetPUAngle2(j.c()))
+func (j PUJoint) Angle2() float32 {
+	return float32(C.dJointGetPUAngle2(j.c()))
 }
 
 // Angle2Rate returns the second angle's rate of change.
-func (j PUJoint) Angle2Rate() float64 {
-	return float64(C.dJointGetPUAngle2Rate(j.c()))
+func (j PUJoint) Angle2Rate() float32 {
+	return float32(C.dJointGetPUAngle2Rate(j.c()))
 }
 
 // Angles returns the two joint angles.
-func (j PUJoint) Angles() (float64, float64) {
-	var angle1, angle2 float64
+func (j PUJoint) Angles() (float32, float32) {
+	var angle1, angle2 float32
 	C.dJointGetPUAngles(j.c(), (*C.dReal)(&angle1), (*C.dReal)(&angle2))
 	return angle1, angle2
 }
@@ -989,13 +989,13 @@ type PistonJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j PistonJoint) SetParam(parameter int, value float64) {
+func (j PistonJoint) SetParam(parameter int, value float32) {
 	C.dJointSetPistonParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j PistonJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetPistonParam(j.c(), C.int(parameter)))
+func (j PistonJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetPistonParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor sets the anchor point.
@@ -1029,27 +1029,27 @@ func (j PistonJoint) Axis() Vector3 {
 }
 
 // Position returns the piston position.
-func (j PistonJoint) Position() float64 {
-	return float64(C.dJointGetPistonPosition(j.c()))
+func (j PistonJoint) Position() float32 {
+	return float32(C.dJointGetPistonPosition(j.c()))
 }
 
 // PositionRate returns the piston position's rate of change.
-func (j PistonJoint) PositionRate() float64 {
-	return float64(C.dJointGetPistonPositionRate(j.c()))
+func (j PistonJoint) PositionRate() float32 {
+	return float32(C.dJointGetPistonPositionRate(j.c()))
 }
 
 // Angle returns the joint angle.
-func (j PistonJoint) Angle() float64 {
-	return float64(C.dJointGetPistonAngle(j.c()))
+func (j PistonJoint) Angle() float32 {
+	return float32(C.dJointGetPistonAngle(j.c()))
 }
 
 // AngleRate returns the joint angle's rate of change.
-func (j PistonJoint) AngleRate() float64 {
-	return float64(C.dJointGetPistonAngleRate(j.c()))
+func (j PistonJoint) AngleRate() float32 {
+	return float32(C.dJointGetPistonAngleRate(j.c()))
 }
 
 // AddForce adds a force to the joint.
-func (j PistonJoint) AddForce(force float64) {
+func (j PistonJoint) AddForce(force float32) {
 	C.dJointAddPistonForce(j.c(), C.dReal(force))
 }
 
@@ -1059,13 +1059,13 @@ type DBallJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j DBallJoint) SetParam(parameter int, value float64) {
+func (j DBallJoint) SetParam(parameter int, value float32) {
 	C.dJointSetDBallParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j DBallJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetDBallParam(j.c(), C.int(parameter)))
+func (j DBallJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetDBallParam(j.c(), C.int(parameter)))
 }
 
 // SetAnchor1 sets the anchor point for the first body.
@@ -1093,8 +1093,8 @@ func (j DBallJoint) Anchor2() Vector3 {
 }
 
 // Distance returns the joint distance.
-func (j DBallJoint) Distance() float64 {
-	return float64(C.dJointGetDBallDistance(j.c()))
+func (j DBallJoint) Distance() float32 {
+	return float32(C.dJointGetDBallDistance(j.c()))
 }
 
 // DHingeJoint represents a double hinge joint.
@@ -1103,13 +1103,13 @@ type DHingeJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j DHingeJoint) SetParam(parameter int, value float64) {
+func (j DHingeJoint) SetParam(parameter int, value float32) {
 	C.dJointSetDHingeParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j DHingeJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetDHingeParam(j.c(), C.int(parameter)))
+func (j DHingeJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetDHingeParam(j.c(), C.int(parameter)))
 }
 
 // SetAxis sets the joint axis.
@@ -1149,8 +1149,8 @@ func (j DHingeJoint) Anchor2() Vector3 {
 }
 
 // Distance returns the joint distance.
-func (j DHingeJoint) Distance() float64 {
-	return float64(C.dJointGetDHingeDistance(j.c()))
+func (j DHingeJoint) Distance() float32 {
+	return float32(C.dJointGetDHingeDistance(j.c()))
 }
 
 // TransmissionJoint represents a transmission joint.
@@ -1159,13 +1159,13 @@ type TransmissionJoint struct {
 }
 
 // SetParam sets a joint parameter.
-func (j TransmissionJoint) SetParam(parameter int, value float64) {
+func (j TransmissionJoint) SetParam(parameter int, value float32) {
 	C.dJointSetTransmissionParam(j.c(), C.int(parameter), C.dReal(value))
 }
 
 // Param returns a joint parameter.
-func (j TransmissionJoint) Param(parameter int) float64 {
-	return float64(C.dJointGetTransmissionParam(j.c(), C.int(parameter)))
+func (j TransmissionJoint) Param(parameter int) float32 {
+	return float32(C.dJointGetTransmissionParam(j.c(), C.int(parameter)))
 }
 
 // SetAxis sets the common axis.
@@ -1243,33 +1243,33 @@ func (j TransmissionJoint) ContactPoint2() Vector3 {
 }
 
 // Angle1 returns the angle of the first wheel.
-func (j TransmissionJoint) Angle1() float64 {
-	return float64(C.dJointGetTransmissionAngle1(j.c()))
+func (j TransmissionJoint) Angle1() float32 {
+	return float32(C.dJointGetTransmissionAngle1(j.c()))
 }
 
 // Angle2 returns the angle of the second wheel.
-func (j TransmissionJoint) Angle2() float64 {
-	return float64(C.dJointGetTransmissionAngle2(j.c()))
+func (j TransmissionJoint) Angle2() float32 {
+	return float32(C.dJointGetTransmissionAngle2(j.c()))
 }
 
 // SetRadius1 sets the radius of the first wheel.
-func (j TransmissionJoint) SetRadius1(radius float64) {
+func (j TransmissionJoint) SetRadius1(radius float32) {
 	C.dJointSetTransmissionRadius1(j.c(), C.dReal(radius))
 }
 
 // Radius1 returns the radius of the first wheel.
-func (j TransmissionJoint) Radius1() float64 {
-	return float64(C.dJointGetTransmissionRadius1(j.c()))
+func (j TransmissionJoint) Radius1() float32 {
+	return float32(C.dJointGetTransmissionRadius1(j.c()))
 }
 
 // SetRadius2 sets the radius of the second wheel.
-func (j TransmissionJoint) SetRadius2(radius float64) {
+func (j TransmissionJoint) SetRadius2(radius float32) {
 	C.dJointSetTransmissionRadius2(j.c(), C.dReal(radius))
 }
 
 // Radius2 returns the radius of the second wheel.
-func (j TransmissionJoint) Radius2() float64 {
-	return float64(C.dJointGetTransmissionRadius2(j.c()))
+func (j TransmissionJoint) Radius2() float32 {
+	return float32(C.dJointGetTransmissionRadius2(j.c()))
 }
 
 // SetMode sets the transmission mode.
@@ -1283,21 +1283,21 @@ func (j TransmissionJoint) Mode() int {
 }
 
 // SetRatio sets the gear ratio.
-func (j TransmissionJoint) SetRatio(ratio float64) {
+func (j TransmissionJoint) SetRatio(ratio float32) {
 	C.dJointSetTransmissionRatio(j.c(), C.dReal(ratio))
 }
 
 // Ratio returns the gear ratio.
-func (j TransmissionJoint) Ratio() float64 {
-	return float64(C.dJointGetTransmissionRatio(j.c()))
+func (j TransmissionJoint) Ratio() float32 {
+	return float32(C.dJointGetTransmissionRatio(j.c()))
 }
 
 // SetBacklash set the backlash (gear tooth play distance).
-func (j TransmissionJoint) SetBacklash(backlash float64) {
+func (j TransmissionJoint) SetBacklash(backlash float32) {
 	C.dJointSetTransmissionBacklash(j.c(), C.dReal(backlash))
 }
 
 // Backlash returns the backlash (gear tooth play distance).
-func (j TransmissionJoint) Backlash() float64 {
-	return float64(C.dJointGetTransmissionBacklash(j.c()))
+func (j TransmissionJoint) Backlash() float32 {
+	return float32(C.dJointGetTransmissionBacklash(j.c()))
 }

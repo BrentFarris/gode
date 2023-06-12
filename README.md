@@ -8,8 +8,6 @@ useful.
 
 Get ODE [here](http://bitbucket.org/odedevs/ode/).
 
-ODE must be compiled as a shared library with double precision support.
+ODE must be compiled as a shared library with single precision support.
 Triangle mesh indices are expected to be 32 bit, which is the ODE default.  The
 following will configure ODE with these options:
-
-`> cd /path/to/ode-src; ./configure --enable-double-precision --enable-shared`

@@ -366,18 +366,18 @@ type Sphere struct {
 }
 
 // SetRadius sets the radius.
-func (s Sphere) SetRadius(radius float64) {
+func (s Sphere) SetRadius(radius float32) {
 	C.dGeomSphereSetRadius(s.c(), C.dReal(radius))
 }
 
 // Radius returns the radius.
-func (s Sphere) Radius() float64 {
-	return float64(C.dGeomSphereGetRadius(s.c()))
+func (s Sphere) Radius() float32 {
+	return float32(C.dGeomSphereGetRadius(s.c()))
 }
 
 // SpherePointDepth returns the depth of the given point.
-func (s Sphere) SpherePointDepth(pt Vector3) float64 {
-	return float64(C.dGeomSpherePointDepth(s.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
+func (s Sphere) SpherePointDepth(pt Vector3) float32 {
+	return float32(C.dGeomSpherePointDepth(s.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
 }
 
 // Box is a geometry representing a rectangular box.
@@ -398,8 +398,8 @@ func (b Box) Lengths() Vector3 {
 }
 
 // PointDepth returns the depth of the given point.
-func (b Box) PointDepth(pt Vector3) float64 {
-	return float64(C.dGeomBoxPointDepth(b.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
+func (b Box) PointDepth(pt Vector3) float32 {
+	return float32(C.dGeomBoxPointDepth(b.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
 }
 
 // Plane is a geometry that represents a plane.
@@ -420,8 +420,8 @@ func (p Plane) Params() Vector4 {
 }
 
 // PointDepth returns the depth of the given point.
-func (p Plane) PointDepth(pt Vector3) float64 {
-	return float64(C.dGeomPlanePointDepth(p.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
+func (p Plane) PointDepth(pt Vector3) float32 {
+	return float32(C.dGeomPlanePointDepth(p.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
 }
 
 // Capsule is a geometry that represents a capsule (a cylinder with a half
@@ -431,20 +431,20 @@ type Capsule struct {
 }
 
 // SetParams sets the radius and length.
-func (c Capsule) SetParams(radius, length float64) {
+func (c Capsule) SetParams(radius, length float32) {
 	C.dGeomCapsuleSetParams(c.c(), C.dReal(radius), C.dReal(length))
 }
 
 // Params returns the radius and length.
-func (c Capsule) Params() (float64, float64) {
-	var radius, length float64
+func (c Capsule) Params() (float32, float32) {
+	var radius, length float32
 	C.dGeomCapsuleGetParams(c.c(), (*C.dReal)(&radius), (*C.dReal)(&length))
 	return radius, length
 }
 
 // PointDepth returns the depth of the given point.
-func (c Capsule) PointDepth(pt Vector3) float64 {
-	return float64(C.dGeomCapsulePointDepth(c.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
+func (c Capsule) PointDepth(pt Vector3) float32 {
+	return float32(C.dGeomCapsulePointDepth(c.c(), C.dReal(pt[0]), C.dReal(pt[1]), C.dReal(pt[2])))
 }
 
 // Cylinder is a geometry that represents a cylider.
@@ -453,13 +453,13 @@ type Cylinder struct {
 }
 
 // SetParams sets the radius and length.
-func (c Cylinder) SetParams(radius, length float64) {
+func (c Cylinder) SetParams(radius, length float32) {
 	C.dGeomCylinderSetParams(c.c(), C.dReal(radius), C.dReal(length))
 }
 
 // Params returns the radius and length.
-func (c Cylinder) Params() (float64, float64) {
-	var radius, length float64
+func (c Cylinder) Params() (float32, float32) {
+	var radius, length float32
 	C.dGeomCylinderGetParams(c.c(), (*C.dReal)(&radius), (*C.dReal)(&length))
 	return radius, length
 }
@@ -483,13 +483,13 @@ func (r Ray) PosDir() (Vector3, Vector3) {
 }
 
 // SetLength sets the length.
-func (r Ray) SetLength(length float64) {
+func (r Ray) SetLength(length float32) {
 	C.dGeomRaySetLength(r.c(), C.dReal(length))
 }
 
 // Length returns the length.
-func (r Ray) Length() float64 {
-	return float64(C.dGeomRayGetLength(r.c()))
+func (r Ray) Length() float32 {
+	return float32(C.dGeomRayGetLength(r.c()))
 }
 
 // SetFirstContact sets whether to stop collision detection after finding the

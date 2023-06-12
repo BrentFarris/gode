@@ -52,10 +52,10 @@ func alignNum(num, align int) int {
 }
 
 // Vector represents a double precision vector.
-type Vector []float64
+type Vector []float32
 
 // NewVector returns a new Vector instance.
-func NewVector(size, align int, vals ...float64) Vector {
+func NewVector(size, align int, vals ...float32) Vector {
 	alignSize := alignNum(size, align)
 	v := make(Vector, size, alignSize)
 	copy(v, vals)
@@ -67,7 +67,7 @@ func (v Vector) convertC(c *C.dReal, toC bool) {
 		if toC {
 			*c = C.dReal(v[i])
 		} else {
-			v[i] = float64(*c)
+			v[i] = float32(*c)
 		}
 		c = (*C.dReal)(unsafe.Pointer(uintptr(unsafe.Pointer(c)) + unsafe.Sizeof(*c)))
 	}
@@ -91,7 +91,7 @@ func cToVector3(a *C.dReal) Vector3 {
 }
 
 // NewVector3 returns a new Vector3 instance.
-func NewVector3(vals ...float64) Vector3 {
+func NewVector3(vals ...float32) Vector3 {
 	return Vector3(NewVector(3, 4, vals...))
 }
 
@@ -99,7 +99,7 @@ func NewVector3(vals ...float64) Vector3 {
 type Vector4 Vector
 
 // NewVector4 returns a new Vector4 instance.
-func NewVector4(vals ...float64) Vector4 {
+func NewVector4(vals ...float32) Vector4 {
 	return Vector4(NewVector(4, 4, vals...))
 }
 
@@ -107,7 +107,7 @@ func NewVector4(vals ...float64) Vector4 {
 type Quaternion Vector
 
 // NewQuaternion returns a new Quaternion instance.
-func NewQuaternion(vals ...float64) Quaternion {
+func NewQuaternion(vals ...float32) Quaternion {
 	return Quaternion(NewVector(4, 1, vals...))
 }
 
@@ -115,18 +115,18 @@ func NewQuaternion(vals ...float64) Quaternion {
 type AABB Vector
 
 // NewAABB returns a new AABB instance.
-func NewAABB(vals ...float64) AABB {
+func NewAABB(vals ...float32) AABB {
 	return AABB(NewVector(6, 1, vals...))
 }
 
 // Matrix represents a double precision matrix.
-type Matrix [][]float64
+type Matrix [][]float32
 
 // NewVector returns a new Matrix instance.
-func NewMatrix(numRows, numCols, align int, vals ...float64) Matrix {
+func NewMatrix(numRows, numCols, align int, vals ...float32) Matrix {
 	mat := make(Matrix, numRows)
 	numAlignCols := alignNum(numCols, align)
-	elts := make([]float64, numAlignCols*numRows)
+	elts := make([]float32, numAlignCols*numRows)
 	for i := range mat {
 		mat[i], elts = elts[:numCols:numAlignCols], elts[numAlignCols:]
 		n := numCols
@@ -146,7 +146,7 @@ func (m Matrix) convertC(c *C.dReal, toC bool) {
 				if toC {
 					*c = C.dReal(m[i][j])
 				} else {
-					m[i][j] = float64(*c)
+					m[i][j] = float32(*c)
 				}
 			}
 			c = (*C.dReal)(unsafe.Pointer(uintptr(unsafe.Pointer(c)) + unsafe.Sizeof(*c)))
@@ -166,7 +166,7 @@ func (m Matrix) fromC(c *C.dReal) {
 type Matrix3 Matrix
 
 // NewMatrix3 returns a new Matrix3 instance.
-func NewMatrix3(vals ...float64) Matrix3 {
+func NewMatrix3(vals ...float32) Matrix3 {
 	return Matrix3(NewMatrix(3, 3, 4, vals...))
 }
 
@@ -174,7 +174,7 @@ func NewMatrix3(vals ...float64) Matrix3 {
 type Matrix4 Matrix
 
 // NewMatrix4 returns a new Matrix4 instance.
-func NewMatrix4(vals ...float64) Matrix4 {
+func NewMatrix4(vals ...float32) Matrix4 {
 	return Matrix4(NewMatrix(4, 4, 4, vals...))
 }
 
@@ -182,7 +182,7 @@ func NewMatrix4(vals ...float64) Matrix4 {
 type VertexList Matrix
 
 // NewVertexList returns a new VertexList instance.
-func NewVertexList(size int, vals ...float64) VertexList {
+func NewVertexList(size int, vals ...float32) VertexList {
 	return VertexList(NewMatrix(size, 3, 1, vals...))
 }
 
@@ -190,7 +190,7 @@ func NewVertexList(size int, vals ...float64) VertexList {
 type PlaneList Matrix
 
 // NewPlaneList returns a new PlaneList instance.
-func NewPlaneList(size int, vals ...float64) PlaneList {
+func NewPlaneList(size int, vals ...float32) PlaneList {
 	return PlaneList(NewMatrix(size, 4, 1, vals...))
 }
 

@@ -42,23 +42,23 @@ func (b Body) Destroy() {
 }
 
 // SetAutoDisableLinearThreshold sets the auto disable linear average threshold.
-func (b Body) SetAutoDisableLinearThreshold(thresh float64) {
+func (b Body) SetAutoDisableLinearThreshold(thresh float32) {
 	C.dBodySetAutoDisableLinearThreshold(b.c(), C.dReal(thresh))
 }
 
 // AutoDisableLinearThreshold returns the auto disable linear average threshold.
-func (b Body) AutoDisableLinearThreshold() float64 {
-	return float64(C.dBodyGetAutoDisableLinearThreshold(b.c()))
+func (b Body) AutoDisableLinearThreshold() float32 {
+	return float32(C.dBodyGetAutoDisableLinearThreshold(b.c()))
 }
 
 // SetAutoDisableAngularThreshold sets the auto disable angular average threshold.
-func (b Body) SetAutoDisableAngularThreshold(thresh float64) {
+func (b Body) SetAutoDisableAngularThreshold(thresh float32) {
 	C.dBodySetAutoDisableAngularThreshold(b.c(), C.dReal(thresh))
 }
 
 // AutoDisableAngularThreshold returns the auto disable angular average threshold.
-func (b Body) AutoDisableAngularThreshold() float64 {
-	return float64(C.dBodyGetAutoDisableAngularThreshold(b.c()))
+func (b Body) AutoDisableAngularThreshold() float32 {
+	return float32(C.dBodyGetAutoDisableAngularThreshold(b.c()))
 }
 
 // SetAutoAutoDisableAverageSamplesCount sets auto disable average sample count.
@@ -82,13 +82,13 @@ func (b Body) AutoDisableSteps() int {
 }
 
 // SetAutoDisableTime sets the auto disable time.
-func (b Body) SetAutoDisableTime(time float64) {
+func (b Body) SetAutoDisableTime(time float32) {
 	C.dBodySetAutoDisableTime(b.c(), C.dReal(time))
 }
 
 // AutoDisableTime returns the auto disable time.
-func (b Body) AutoDisableTime() float64 {
-	return float64(C.dBodyGetAutoDisableTime(b.c()))
+func (b Body) AutoDisableTime() float32 {
+	return float32(C.dBodyGetAutoDisableTime(b.c()))
 }
 
 // SetAutoDisable sets wether the body will be auto disabled.
@@ -337,53 +337,53 @@ func (b Body) SetDampingDefaults() {
 }
 
 // SetLinearDamping sets the linear damping scale.
-func (b Body) SetLinearDamping(scale float64) {
+func (b Body) SetLinearDamping(scale float32) {
 	C.dBodySetLinearDamping(b.c(), C.dReal(scale))
 }
 
 // LinearDamping returns the linear damping scale.
-func (b Body) LinearDamping() float64 {
-	return float64(C.dBodyGetLinearDamping(b.c()))
+func (b Body) LinearDamping() float32 {
+	return float32(C.dBodyGetLinearDamping(b.c()))
 }
 
 // SetAngularDamping sets the angular damping scale.
-func (b Body) SetAngularDamping(scale float64) {
+func (b Body) SetAngularDamping(scale float32) {
 	C.dBodySetAngularDamping(b.c(), C.dReal(scale))
 }
 
 // AngularDamping returns the angular damping scale.
-func (b Body) AngularDamping() float64 {
-	return float64(C.dBodyGetAngularDamping(b.c()))
+func (b Body) AngularDamping() float32 {
+	return float32(C.dBodyGetAngularDamping(b.c()))
 }
 
 // SetLinearDampingThreshold sets the linear damping threshold.
-func (b Body) SetLinearDampingThreshold(threshold float64) {
+func (b Body) SetLinearDampingThreshold(threshold float32) {
 	C.dBodySetLinearDampingThreshold(b.c(), C.dReal(threshold))
 }
 
 // LinearDampingThreshold returns the linear damping threshold.
-func (b Body) LinearDampingThreshold() float64 {
-	return float64(C.dBodyGetLinearDampingThreshold(b.c()))
+func (b Body) LinearDampingThreshold() float32 {
+	return float32(C.dBodyGetLinearDampingThreshold(b.c()))
 }
 
 // SetAngularDampingThreshold sets the angular damping threshold.
-func (b Body) SetAngularDampingThreshold(threshold float64) {
+func (b Body) SetAngularDampingThreshold(threshold float32) {
 	C.dBodySetAngularDampingThreshold(b.c(), C.dReal(threshold))
 }
 
 // AngularDampingThreshold returns the angular damping threshold.
-func (b Body) AngularDampingThreshold() float64 {
-	return float64(C.dBodyGetAngularDampingThreshold(b.c()))
+func (b Body) AngularDampingThreshold() float32 {
+	return float32(C.dBodyGetAngularDampingThreshold(b.c()))
 }
 
 // SetMaxAngularSpeed sets the maximum angular speed.
-func (b Body) SetMaxAngularSpeed(maxSpeed float64) {
+func (b Body) SetMaxAngularSpeed(maxSpeed float32) {
 	C.dBodySetMaxAngularSpeed(b.c(), C.dReal(maxSpeed))
 }
 
 // MaxAngularSpeed returns the maximum angular speed.
-func (b Body) MaxAngularSpeed() float64 {
-	return float64(C.dBodyGetMaxAngularSpeed(b.c()))
+func (b Body) MaxAngularSpeed() float32 {
+	return float32(C.dBodyGetMaxAngularSpeed(b.c()))
 }
 
 // SetGyroModeEnabled sets whether gyroscopic mode is enabled.

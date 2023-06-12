@@ -35,14 +35,15 @@ type Heightfield struct {
 
 // Build builds a heightfield data set.
 func (h Heightfield) Build(data HeightfieldData, heightSamples Matrix,
-	width, depth, scale, offset, thickness float64, doWrap bool) {
+	width, depth, scale, offset, thickness float32, doWrap bool) {
 
 	numWidthSamp, numDepthSamp := len(heightSamples), 0
 	var heightSamplesPtr *C.double
 	if numDepthSamp > 0 {
 		numWidthSamp = len(heightSamples[0])
 		if numWidthSamp > 0 {
-			heightSamplesPtr = (*C.double)(&heightSamples[0][0])
+			hs := float64(heightSamples[0][0])
+			heightSamplesPtr = (*C.double)(&hs)
 		}
 	}
 	C.dGeomHeightfieldDataBuildDouble(data.c(), heightSamplesPtr, 1,
@@ -51,7 +52,7 @@ func (h Heightfield) Build(data HeightfieldData, heightSamples Matrix,
 }
 
 // SetBounds sets the minimum and maximum height.
-func (h Heightfield) SetBounds(data HeightfieldData, minHeight, maxHeight float64) {
+func (h Heightfield) SetBounds(data HeightfieldData, minHeight, maxHeight float32) {
 	C.dGeomHeightfieldDataSetBounds(data.c(), C.dReal(minHeight), C.dReal(maxHeight))
 }
 

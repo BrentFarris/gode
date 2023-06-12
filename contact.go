@@ -28,40 +28,40 @@ const (
 type SurfaceParameters struct {
 	// must always be defined
 	Mode int
-	Mu   float64
+	Mu   float32
 
 	// only defined if the corresponding flag is set in mode
-	Mu2       float64
-	Rho       float64
-	Rho2      float64
-	RhoN      float64
-	Bounce    float64
-	BounceVel float64
-	SoftErp   float64
-	SoftCfm   float64
-	Motion1   float64
-	Motion2   float64
-	MotionN   float64
-	Slip1     float64
-	Slip2     float64
+	Mu2       float32
+	Rho       float32
+	Rho2      float32
+	RhoN      float32
+	Bounce    float32
+	BounceVel float32
+	SoftErp   float32
+	SoftCfm   float32
+	Motion1   float32
+	Motion2   float32
+	MotionN   float32
+	Slip1     float32
+	Slip2     float32
 }
 
 func (s *SurfaceParameters) fromC(c *C.dSurfaceParameters) {
 	s.Mode = int(c.mode)
-	s.Mu = float64(c.mu)
-	s.Mu2 = float64(c.mu2)
-	s.Rho = float64(c.rho)
-	s.Rho2 = float64(c.rho2)
-	s.RhoN = float64(c.rhoN)
-	s.Bounce = float64(c.bounce)
-	s.BounceVel = float64(c.bounce_vel)
-	s.SoftErp = float64(c.soft_erp)
-	s.SoftCfm = float64(c.soft_cfm)
-	s.Motion1 = float64(c.motion1)
-	s.Motion2 = float64(c.motion2)
-	s.MotionN = float64(c.motionN)
-	s.Slip1 = float64(c.slip1)
-	s.Slip2 = float64(c.slip2)
+	s.Mu = float32(c.mu)
+	s.Mu2 = float32(c.mu2)
+	s.Rho = float32(c.rho)
+	s.Rho2 = float32(c.rho2)
+	s.RhoN = float32(c.rhoN)
+	s.Bounce = float32(c.bounce)
+	s.BounceVel = float32(c.bounce_vel)
+	s.SoftErp = float32(c.soft_erp)
+	s.SoftCfm = float32(c.soft_cfm)
+	s.Motion1 = float32(c.motion1)
+	s.Motion2 = float32(c.motion2)
+	s.MotionN = float32(c.motionN)
+	s.Slip1 = float32(c.slip1)
+	s.Slip2 = float32(c.slip2)
 }
 
 func (s *SurfaceParameters) toC(c *C.dSurfaceParameters) {
@@ -86,7 +86,7 @@ func (s *SurfaceParameters) toC(c *C.dSurfaceParameters) {
 type ContactGeom struct {
 	Pos    Vector3
 	Normal Vector3
-	Depth  float64
+	Depth  float32
 	G1     Geom
 	G2     Geom
 	Side1  int
@@ -104,7 +104,7 @@ func NewContactGeom() *ContactGeom {
 func (g *ContactGeom) fromC(c *C.dContactGeom) {
 	Vector(g.Pos).fromC(&c.pos[0])
 	Vector(g.Normal).fromC(&c.normal[0])
-	g.Depth = float64(c.depth)
+	g.Depth = float32(c.depth)
 	g.G1 = cToGeom(c.g1)
 	g.G2 = cToGeom(c.g2)
 	g.Side1 = int(c.side1)

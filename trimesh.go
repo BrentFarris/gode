@@ -72,7 +72,7 @@ func triCallback(c C.dGeomID, other C.dGeomID, index C.int) C.int {
 
 // TriRayCallback is called to determine whether to collide a triangle with a
 // ray at a given point.
-type TriRayCallback func(mesh TriMesh, ray Ray, index int, u, v float64) bool
+type TriRayCallback func(mesh TriMesh, ray Ray, index int, u, v float32) bool
 
 //export triRayCallback
 func triRayCallback(c C.dGeomID, ray C.dGeomID, index C.int, u, v C.dReal) C.int {
@@ -81,7 +81,7 @@ func triRayCallback(c C.dGeomID, ray C.dGeomID, index C.int, u, v C.dReal) C.int
 	if !ok {
 		return 0
 	}
-	return C.int(btoi(cb(mesh, cToGeom(ray).(Ray), int(index), float64(u), float64(v))))
+	return C.int(btoi(cb(mesh, cToGeom(ray).(Ray), int(index), float32(u), float32(v))))
 }
 
 // SetLastTransform sets the last transform.
@@ -168,7 +168,7 @@ func (t TriMesh) Triangle(index int) (Vector3, Vector3, Vector3) {
 }
 
 // Point returns a point on the specified triangle at the given barycentric coordinates.
-func (t TriMesh) Point(index int, u, v float64) Vector3 {
+func (t TriMesh) Point(index int, u, v float32) Vector3 {
 	pt := NewVector3()
 	C.dGeomTriMeshGetPoint(t.c(), C.int(index), C.dReal(u), C.dReal(v), (*C.dReal)(&pt[0]))
 	return pt

@@ -66,23 +66,23 @@ func (w World) Gravity() Vector3 {
 }
 
 // SetERP sets the error reduction parameter.
-func (w World) SetERP(erp float64) {
+func (w World) SetERP(erp float32) {
 	C.dWorldSetERP(w.c(), C.dReal(erp))
 }
 
 // ERP returns the error reduction parameter.
-func (w World) ERP() float64 {
-	return float64(C.dWorldGetERP(w.c()))
+func (w World) ERP() float32 {
+	return float32(C.dWorldGetERP(w.c()))
 }
 
 // SetCFM sets the constraint force mixing value.
-func (w World) SetCFM(cfm float64) {
+func (w World) SetCFM(cfm float32) {
 	C.dWorldSetCFM(w.c(), C.dReal(cfm))
 }
 
 // CFM returns the constraint force mixing value.
-func (w World) CFM() float64 {
-	return float64(C.dWorldGetCFM(w.c()))
+func (w World) CFM() float32 {
+	return float32(C.dWorldGetCFM(w.c()))
 }
 
 // SetStepIslandsProcessingMaxThreadCount sets the maximum number of threads to
@@ -110,18 +110,18 @@ func (w World) CleanupWorkingMemory() {
 
 // Step executes a simulation step, and returns whether the operation
 // succeeded.
-func (w World) Step(stepSize float64) bool {
+func (w World) Step(stepSize float32) bool {
 	return C.dWorldStep(w.c(), C.dReal(stepSize)) != 0
 }
 
 // QuickStep executes a simulation quick step, and returns whether the
 // operation succeeded.
-func (w World) QuickStep(stepSize float64) bool {
+func (w World) QuickStep(stepSize float32) bool {
 	return C.dWorldQuickStep(w.c(), C.dReal(stepSize)) != 0
 }
 
 // ImpulseToForce converts an impulse to a force over a step duration.
-func (w World) ImpulseToForce(stepSize float64, impulse Vector3) Vector3 {
+func (w World) ImpulseToForce(stepSize float32, impulse Vector3) Vector3 {
 	force := NewVector3()
 	C.dWorldImpulseToForce(w.c(), C.dReal(stepSize),
 		C.dReal(impulse[0]), C.dReal(impulse[1]), C.dReal(impulse[2]),
@@ -142,57 +142,57 @@ func (w World) QuickStepNumIterations() int {
 }
 
 // SetQuickStepW sets the over-relaxation parameter.
-func (w World) SetQuickStepW(overRelaxation float64) {
+func (w World) SetQuickStepW(overRelaxation float32) {
 	C.dWorldSetQuickStepW(w.c(), C.dReal(overRelaxation))
 }
 
 // QuickStepW returns the over-relaxation parameter.
-func (w World) QuickStepW() float64 {
-	return float64(C.dWorldGetQuickStepW(w.c()))
+func (w World) QuickStepW() float32 {
+	return float32(C.dWorldGetQuickStepW(w.c()))
 }
 
 // SetContactMaxCorrectingVelocity sets the maximum correcting velocity that
 // contacts are allowed to generate.
-func (w World) SetContactMaxCorrectingVelocity(overRelaxation float64) {
+func (w World) SetContactMaxCorrectingVelocity(overRelaxation float32) {
 	C.dWorldSetContactMaxCorrectingVel(w.c(), C.dReal(overRelaxation))
 }
 
 // ContactMaxCorrectingVelocity returns the maximum correcting velocity that
 // contacts are allowed to generate.
-func (w World) ContactMaxCorrectingVelocity() float64 {
-	return float64(C.dWorldGetContactMaxCorrectingVel(w.c()))
+func (w World) ContactMaxCorrectingVelocity() float32 {
+	return float32(C.dWorldGetContactMaxCorrectingVel(w.c()))
 }
 
 // SetContactSurfaceLayer sets the depth of the surface layer around all
 // geometry objects.
-func (w World) SetContactSurfaceLayer(depth float64) {
+func (w World) SetContactSurfaceLayer(depth float32) {
 	C.dWorldSetContactSurfaceLayer(w.c(), C.dReal(depth))
 }
 
 // ContactSurfaceLayer returns the depth of the surface layer around all
 // geometry objects.
-func (w World) ContactSurfaceLayer() float64 {
-	return float64(C.dWorldGetContactSurfaceLayer(w.c()))
+func (w World) ContactSurfaceLayer() float32 {
+	return float32(C.dWorldGetContactSurfaceLayer(w.c()))
 }
 
 // SetAutoDisableLinearThreshold sets the auto disable linear average threshold.
-func (w World) SetAutoDisableLinearThreshold(linearThreshold float64) {
+func (w World) SetAutoDisableLinearThreshold(linearThreshold float32) {
 	C.dWorldSetAutoDisableLinearThreshold(w.c(), C.dReal(linearThreshold))
 }
 
 // AutoDisableLinearThreshold returns the auto disable linear average threshold.
-func (w World) AutoDisableLinearThreshold() float64 {
-	return float64(C.dWorldGetAutoDisableLinearThreshold(w.c()))
+func (w World) AutoDisableLinearThreshold() float32 {
+	return float32(C.dWorldGetAutoDisableLinearThreshold(w.c()))
 }
 
 // SetAutoDisableAngularThreshold sets the auto disable angular average threshold.
-func (w World) SetAutoDisableAngularThreshold(angularThreshold float64) {
+func (w World) SetAutoDisableAngularThreshold(angularThreshold float32) {
 	C.dWorldSetAutoDisableAngularThreshold(w.c(), C.dReal(angularThreshold))
 }
 
 // AutoDisableAngularThreshold returns the auto disable angular average threshold.
-func (w World) AutoDisableAngularThreshold() float64 {
-	return float64(C.dWorldGetAutoDisableAngularThreshold(w.c()))
+func (w World) AutoDisableAngularThreshold() float32 {
+	return float32(C.dWorldGetAutoDisableAngularThreshold(w.c()))
 }
 
 // SetAutoAutoDisableAverageSamplesCount sets auto disable average sample count.
@@ -216,13 +216,13 @@ func (w World) AutoDisableSteps() int {
 }
 
 // SetAutoDisableTime sets the auto disable time.
-func (w World) SetAutoDisableTime(time float64) {
+func (w World) SetAutoDisableTime(time float32) {
 	C.dWorldSetAutoDisableTime(w.c(), C.dReal(time))
 }
 
 // AutoDisableTime returns the auto disable time.
-func (w World) AutoDisableTime() float64 {
-	return float64(C.dWorldGetAutoDisableTime(w.c()))
+func (w World) AutoDisableTime() float32 {
+	return float32(C.dWorldGetAutoDisableTime(w.c()))
 }
 
 // SetAutoDisable sets wether the body will be auto disabled.
@@ -236,53 +236,53 @@ func (w World) AutoDisable() bool {
 }
 
 // SetLinearDamping sets the linear damping scale.
-func (w World) SetLinearDamping(scale float64) {
+func (w World) SetLinearDamping(scale float32) {
 	C.dWorldSetLinearDamping(w.c(), C.dReal(scale))
 }
 
 // LinearDamping returns the linear damping scale.
-func (w World) LinearDamping() float64 {
-	return float64(C.dWorldGetLinearDamping(w.c()))
+func (w World) LinearDamping() float32 {
+	return float32(C.dWorldGetLinearDamping(w.c()))
 }
 
 // SetAngularDamping sets the angular damping scale.
-func (w World) SetAngularDamping(scale float64) {
+func (w World) SetAngularDamping(scale float32) {
 	C.dWorldSetAngularDamping(w.c(), C.dReal(scale))
 }
 
 // AngularDamping returns the angular damping scale.
-func (w World) AngularDamping() float64 {
-	return float64(C.dWorldGetAngularDamping(w.c()))
+func (w World) AngularDamping() float32 {
+	return float32(C.dWorldGetAngularDamping(w.c()))
 }
 
 // SetLinearDampingThreshold sets the linear damping threshold.
-func (w World) SetLinearDampingThreshold(threshold float64) {
+func (w World) SetLinearDampingThreshold(threshold float32) {
 	C.dWorldSetLinearDampingThreshold(w.c(), C.dReal(threshold))
 }
 
 // LinearDampingThreshold returns the linear damping threshold.
-func (w World) LinearDampingThreshold() float64 {
-	return float64(C.dWorldGetLinearDampingThreshold(w.c()))
+func (w World) LinearDampingThreshold() float32 {
+	return float32(C.dWorldGetLinearDampingThreshold(w.c()))
 }
 
 // SetAngularDampingThreshold sets the angular damping threshold.
-func (w World) SetAngularDampingThreshold(threshold float64) {
+func (w World) SetAngularDampingThreshold(threshold float32) {
 	C.dWorldSetAngularDampingThreshold(w.c(), C.dReal(threshold))
 }
 
 // AngularDampingThreshold returns the angular damping threshold.
-func (w World) AngularDampingThreshold() float64 {
-	return float64(C.dWorldGetAngularDampingThreshold(w.c()))
+func (w World) AngularDampingThreshold() float32 {
+	return float32(C.dWorldGetAngularDampingThreshold(w.c()))
 }
 
 // SetMaxAngularSpeed sets the maximum angular speed.
-func (w World) SetMaxAngularSpeed(maxSpeed float64) {
+func (w World) SetMaxAngularSpeed(maxSpeed float32) {
 	C.dWorldSetMaxAngularSpeed(w.c(), C.dReal(maxSpeed))
 }
 
 // MaxAngularSpeed returns the maximum angular speed.
-func (w World) MaxAngularSpeed() float64 {
-	return float64(C.dWorldGetMaxAngularSpeed(w.c()))
+func (w World) MaxAngularSpeed() float32 {
+	return float32(C.dWorldGetMaxAngularSpeed(w.c()))
 }
 
 // NewBallJoint returns a new BallJoint instance

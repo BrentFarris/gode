@@ -36,12 +36,12 @@ type Space interface {
 	NumGeoms(g Geom) int
 	Geom(index int) Geom
 	Collide(data interface{}, cb NearCallback)
-	NewSphere(radius float64) Sphere
+	NewSphere(radius float32) Sphere
 	NewBox(lens Vector3) Box
 	NewPlane(params Vector4) Plane
-	NewCapsule(radius, length float64) Capsule
-	NewCylinder(radius, length float64) Cylinder
-	NewRay(length float64) Ray
+	NewCapsule(radius, length float32) Capsule
+	NewCylinder(radius, length float32) Cylinder
+	NewRay(length float32) Ray
 	NewHeightfield(data HeightfieldData, placeable bool) Heightfield
 	NewSimpleSpace() SimpleSpace
 	NewHashSpace() HashSpace
@@ -157,7 +157,7 @@ func (s SpaceBase) Collide(data interface{}, cb NearCallback) {
 }
 
 // NewSphere returns a new Sphere instance.
-func (s SpaceBase) NewSphere(radius float64) Sphere {
+func (s SpaceBase) NewSphere(radius float32) Sphere {
 	return cToGeom(C.dCreateSphere(s.c(), C.dReal(radius))).(Sphere)
 }
 
@@ -173,17 +173,17 @@ func (s SpaceBase) NewPlane(params Vector4) Plane {
 }
 
 // NewCapsule returns a new Capsule instance.
-func (s SpaceBase) NewCapsule(radius, length float64) Capsule {
+func (s SpaceBase) NewCapsule(radius, length float32) Capsule {
 	return cToGeom(C.dCreateCapsule(s.c(), C.dReal(radius), C.dReal(length))).(Capsule)
 }
 
 // NewCylinder returns a new Cylinder instance.
-func (s SpaceBase) NewCylinder(radius, length float64) Cylinder {
+func (s SpaceBase) NewCylinder(radius, length float32) Cylinder {
 	return cToGeom(C.dCreateCylinder(s.c(), C.dReal(radius), C.dReal(length))).(Cylinder)
 }
 
 // NewRay returns a new Ray instance.
-func (s SpaceBase) NewRay(length float64) Ray {
+func (s SpaceBase) NewRay(length float32) Ray {
 	return cToGeom(C.dCreateRay(s.c(), C.dReal(length))).(Ray)
 }
 
